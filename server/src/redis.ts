@@ -43,52 +43,57 @@ const Redis: Database = {
 
   // Room presence
 
-  async roomOccupants (roomId: string) {
+  async roomOccupants(roomId: string) {
     const presenceKey = roomPresenceKey(roomId)
     return JSON.parse(await getCache(presenceKey)) || []
   },
 
-  async setRoomOccupants (roomId: string, occupants: string[]) {
+  async setRoomOccupants(roomId: string, occupants: string[]) {
     const presenceKey = roomPresenceKey(roomId)
     await setCache(presenceKey, JSON.stringify(occupants))
   },
 
-  async setCurrentRoomForUser (userId: string, roomId: string) {
+  async setCurrentRoomForUser(userId: string, roomId: string) {
     await setCache(roomKeyForUser(userId), roomId)
   },
 
-  async currentRoomForUser (userId: string) {
+  async currentRoomForUser(userId: string) {
     return await getCache(roomKeyForUser(userId))
   },
 
-  async addUserToVideoPresence (userId: string, roomId: string) {
-    const rawList = await getCache(videoPresenceKey(roomId))
-    let list: string[]
-    if (!rawList) { list = [] }
-    list = JSON.parse(rawList)
+  async addUserToVideoPresence(userId: string, roomId: string) {
+    // const rawList = await getCache(videoPresenceKey(roomId))
+    // let list: string[]
+    // if (!rawList) { list = [] }
+    // list = JSON.parse(rawList)
 
-    if (!list.includes(userId)) {
-      list.push(userId)
-    }
+    // if (!list.includes(userId)) {
+    //   list.push(userId)
+    // }
 
-    await setCache(videoPresenceKey(roomId), list)
-    return list
+    // await setCache(videoPresenceKey(roomId), list)
+    // return list
+    return []
   },
 
-  async removeUserFromVideoPresence (userId: string, roomId: string) {
-    const rawList = await getCache(videoPresenceKey(roomId))
-    let list: string[]
-    if (!rawList) { list = [] }
-    list = JSON.parse(rawList)
+  async removeUserFromVideoPresence(userId: string, roomId: string) {
+    // const rawList = await getCache(videoPresenceKey(roomId))
+    // let list: string[]
+    // if (rawList) {
+    //   list = JSON.parse(rawList)
+    // } else {
+    //   list = []
+    // }
 
-    list = list.filter(l => l !== userId)
+    // list = list.filter(l => l !== userId)
 
-    await setCache(videoPresenceKey(roomId), list)
-    return list
+    // await setCache(videoPresenceKey(roomId), list)
+    // return list
+    return []
   },
 
   // User
-  async getPublicUser (userId: string) {
+  async getPublicUser(userId: string) {
     const userData = await getCache(profileKeyForUser(userId))
 
     if (!userData) {
