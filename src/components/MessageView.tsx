@@ -16,7 +16,7 @@ import {
 } from '../message'
 import NameView from './NameView'
 
-export default function MessageView (props: { message: Message; id: string }) {
+export default function MessageView(props: { message: Message; id: string }) {
   const { message } = props
 
   const messageMap = {

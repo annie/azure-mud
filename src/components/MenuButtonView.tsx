@@ -6,7 +6,7 @@ import config from '../config'
 import { ShowEditProfileAction } from '../Actions'
 import { DispatchContext } from '../App'
 
-export default function MenuButtonView (props: { username: string }) {
+export default function MenuButtonView(props: { username: string }) {
   const dispatch = useContext(DispatchContext)
 
   const logOut = () => {

@@ -8,7 +8,7 @@ import {
 import { User } from './user'
 import { globalPresenceMessage } from './globalPresenceMessage'
 
-export async function moveToRoom (
+export async function moveToRoom(
   user: User,
   newRoomId: string,
   context: Context

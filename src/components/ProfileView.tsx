@@ -3,7 +3,7 @@ import { PublicUser } from '../../server/src/user'
 
 import '../../style/profileView.css'
 
-export default function ProfileView (props: { user: PublicUser }) {
+export default function ProfileView(props: { user: PublicUser }) {
   const { user } = props
 
   const realName = user.realName ? (
