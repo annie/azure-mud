@@ -189,7 +189,7 @@ export default (oldState: State, action: Action): State => {
     )
   }
 
-  if (action.type == ActionType.Emote) {
+  if (action.type === ActionType.Emote) {
     addMessage(
       state,
       createEmoteMessage(action.value.name, action.value.message)
