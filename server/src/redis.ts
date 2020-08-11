@@ -62,34 +62,37 @@ const Redis: Database = {
   },
 
   async addUserToVideoPresence(userId: string, roomId: string) {
-    // const rawList = await getCache(videoPresenceKey(roomId))
-    // let list: string[]
-    // if (!rawList) { list = [] }
-    // list = JSON.parse(rawList)
+    const rawList = await getCache(videoPresenceKey(roomId))
+    let list: string[]
+    if (rawList) {
+      list = JSON.parse(rawList)
+    } else {
+      list = []
+    }
 
-    // if (!list.includes(userId)) {
-    //   list.push(userId)
-    // }
+    console.log(list)
 
-    // await setCache(videoPresenceKey(roomId), list)
-    // return list
-    return []
+    if (!list.includes(userId)) {
+      list.push(userId)
+    }
+
+    return list
   },
 
   async removeUserFromVideoPresence(userId: string, roomId: string) {
-    // const rawList = await getCache(videoPresenceKey(roomId))
-    // let list: string[]
-    // if (rawList) {
-    //   list = JSON.parse(rawList)
-    // } else {
-    //   list = []
-    // }
+    const rawList = await getCache(videoPresenceKey(roomId))
+    let list: string[]
+    if (rawList) {
+      list = JSON.parse(rawList)
+    } else {
+      list = []
+    }
+    console.log(list)
 
-    // list = list.filter(l => l !== userId)
+    list = list.filter(l => l !== userId)
 
-    // await setCache(videoPresenceKey(roomId), list)
-    // return list
-    return []
+    await setCache(videoPresenceKey(roomId), JSON.stringify(list))
+    return list
   },
 
   // User
